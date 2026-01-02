@@ -14,9 +14,28 @@ The result is a **Deal Fairness Index (DFI)** that quantifies how good or bad a 
 
 ---
 
+## 📊 Example Results (at a glance)
 
+### Win Distribution — EV vs Utility-aware strategy
 
+![Win distribution comparison](images/ev_win_distribution.png)
 
+This histogram compares outcomes from a pure expected-value strategy versus
+a utility-aware (risk- and loss-averse) rollout strategy.  
+The EV strategy produces higher variance and rare big wins, while the
+utility-aware strategy concentrates outcomes in a safer, more TV-realistic range.
+
+---
+
+### Best Game Replay — Utility-aware strategy
+
+![Best game replay timeline](images/lastref_best_replay_timeline.png)
+
+This timeline shows a single high-performing game, plotting remaining expected
+value against banker offers across rounds.  
+Annotations show when **NO DEAL** decisions were made under the model.
+
+---
 
 ## 🎯 What this project does
 
@@ -24,20 +43,22 @@ The simulator compares two strategies:
 
 ### 1️⃣ EV baseline (risk-neutral)
 - Take the Deal if:
+```
+
 Offer ≥ EV(remaining cases)
 
-markdown
-Copy code
+```
 - Maximises average winnings
 - Produces extreme outcomes (very high variance)
 - Rarely matches real TV behaviour
 
 ### 2️⃣ Utility rollout (human-realistic)
 - Take the Deal if:
+```
+
 U(Offer) ≥ E[U(Continue)]
 
-yaml
-Copy code
+```
 - Uses CARA utility to model risk aversion
 - Optional loss aversion using a reference point (e.g. last offer)
 - Uses Monte Carlo lookahead where the contestant’s chosen case remains fixed
@@ -49,17 +70,19 @@ Copy code
 
 For each banker offer:
 
+```
+
 DFI = Offer / CertaintyEquivalent
 
-vbnet
-Copy code
+```
 
 Where the certainty equivalent (CE) is computed from CARA utility:
 
+```
+
 CE = -R * ln( E[ exp(-X / R) ] )
 
-yaml
-Copy code
+````
 
 Interpretation:
 - **DFI < 0.85** → Bad deal
@@ -79,30 +102,6 @@ This makes “good deal” **explicit, quantitative, and contestant-specific**.
 - Final outcome is the value in the contestant’s chosen case
 
 ---
-## 📊 Example Results
-
-### Win Distribution (EV baseline vs utility-aware strategy)
-
-![Win distribution comparison](images/ev_win_distribution.png)
-
-This histogram compares outcomes from a pure expected-value strategy versus
-a utility-aware (risk- and loss-averse) rollout strategy.  
-The EV strategy produces higher variance and rare big wins, while the
-utility-aware strategy concentrates outcomes in a safer, more TV-realistic range.
-
----
-
-### Best Game Replay (Utility-aware strategy)
-
-![Best game replay timeline](images/lastref_best_replay_timeline.png)
-
-This timeline shows a single high-performing game, plotting remaining expected
-value against banker offers across rounds.  
-Annotations show when **NO DEAL** decisions were made under the model.
-
-
-
-
 
 ## ▶️ How to run
 
@@ -112,9 +111,11 @@ python dond_au_lookahead_replay.py \
   --trials 3000 \
   --lookahead_sims 0 \
   --out outputs/dond_ev
-Utility rollout (moderate risk tolerance)
-bash
-Copy code
+````
+
+### Utility rollout (moderate risk tolerance)
+
+```bash
 python dond_au_lookahead_replay.py \
   --trials 3000 \
   --lookahead_sims 120 \
@@ -122,9 +123,11 @@ python dond_au_lookahead_replay.py \
   --loss_aversion 2.0 \
   --ref_mode last_offer \
   --out outputs/dond_util
-“Gambler” profile
-bash
-Copy code
+```
+
+### “Gambler” profile
+
+```bash
 python dond_au_lookahead_replay.py \
   --trials 3000 \
   --lookahead_sims 120 \
@@ -132,44 +135,57 @@ python dond_au_lookahead_replay.py \
   --loss_aversion 2.0 \
   --ref_mode last_offer \
   --out outputs/dond_R80k
-📂 Outputs
+```
+
+---
+
+## 📂 Outputs
+
 Each run produces:
 
-*_raw.csv — trial-level results
-
-*_summary.csv — descriptive statistics
-
-*_win_distribution.png
-
-*_deal_timing.png
-
-*_best_replay.json
-
-*_best_replay_timeline.png
+* `*_raw.csv` — trial-level results
+* `*_summary.csv` — descriptive statistics
+* `*_win_distribution.png`
+* `*_deal_timing.png`
+* `*_best_replay.json`
+* `*_best_replay_timeline.png`
 
 These allow full post-hoc analysis and replay of the best game.
 
-🧠 Key findings
-EV-only play maximises mean winnings but produces extreme downside risk.
+---
 
-Utility-based decisions align far better with real contestant behaviour.
+## 🧠 Key findings
 
-Banker offers often become “objectively good” well before EV parity once risk and loss aversion are accounted for.
+* EV-only play maximises mean winnings but produces extreme downside risk.
+* Utility-based decisions align far better with real contestant behaviour.
+* Banker offers often become **objectively good well before EV parity**
+  once risk and loss aversion are accounted for.
+* The Deal Fairness Index provides a clean, interpretable decision rule.
 
-The Deal Fairness Index provides a clean, interpretable decision rule.
+---
 
+## ⚠️ Limitations
 
-⚠️ Limitations
-Banker behaviour is approximated, not reverse-engineered from TV data.
+* Banker behaviour is approximated, not reverse-engineered from TV data.
+* Utility parameters are stylised (but tunable).
+* This is a decision model, not a psychological claim.
 
-Utility parameters are stylised (but tunable).
+---
 
-This is a decision model, not a psychological claim.
+## 📜 License
 
-📜 License
 MIT License — free to use, modify, and extend.
 
-✍️ Author
-Ashley Vernon
+---
 
-Simulation decision-theory applied-modeling
+## ✍️ Author
+
+**Ashley Vernon**
+Simulation & decision theory · applied modelling
+
+````
+
+
+
+
+
