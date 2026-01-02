@@ -79,6 +79,30 @@ This makes “good deal” **explicit, quantitative, and contestant-specific**.
 - Final outcome is the value in the contestant’s chosen case
 
 ---
+## 📊 Example Results
+
+### Win Distribution (EV baseline vs utility-aware strategy)
+
+![Win distribution comparison](images/ev_win_distribution.png)
+
+This histogram compares outcomes from a pure expected-value strategy versus
+a utility-aware (risk- and loss-averse) rollout strategy.  
+The EV strategy produces higher variance and rare big wins, while the
+utility-aware strategy concentrates outcomes in a safer, more TV-realistic range.
+
+---
+
+### Best Game Replay (Utility-aware strategy)
+
+![Best game replay timeline](images/lastref_best_replay_timeline.png)
+
+This timeline shows a single high-performing game, plotting remaining expected
+value against banker offers across rounds.  
+Annotations show when **NO DEAL** decisions were made under the model.
+
+
+
+
 
 ## ▶️ How to run
 
@@ -133,28 +157,6 @@ Utility-based decisions align far better with real contestant behaviour.
 Banker offers often become “objectively good” well before EV parity once risk and loss aversion are accounted for.
 
 The Deal Fairness Index provides a clean, interpretable decision rule.
-
-## 📊 Example Results
-
-### Win Distribution (EV baseline vs utility-aware strategy)
-
-![Win distribution comparison](images/ev_win_distribution.png)
-
-This histogram compares outcomes from a pure expected-value strategy versus
-a utility-aware (risk- and loss-averse) rollout strategy.  
-The EV strategy produces higher variance and rare big wins, while the
-utility-aware strategy concentrates outcomes in a safer, more TV-realistic range.
-
----
-
-### Best Game Replay (Utility-aware strategy)
-
-![Best game replay timeline](images/lastref_best_replay_timeline.png)
-
-This timeline shows a single high-performing game, plotting remaining expected
-value against banker offers across rounds.  
-Annotations show when **NO DEAL** decisions were made under the model.
-
 
 
 ⚠️ Limitations
