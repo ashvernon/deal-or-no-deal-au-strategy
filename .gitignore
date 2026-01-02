@@ -9,6 +9,11 @@ venv/
 Thumbs.db
 .vscode/
 
+# Allow README images
+!images/
+!images/*.png
+
+
 # Experiment outputs
 *.csv
 *_raw.csv
