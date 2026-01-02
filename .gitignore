@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Experiment outputs
+*.csv
+*_raw.csv
+*_summary.csv
+
+# Generated images 
+*_win_distribution.png
+*_deal_timing.png
+*_best_replay_timeline.png
+
+# Logs
+*.log
