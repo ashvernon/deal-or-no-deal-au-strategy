@@ -14,6 +14,14 @@ The result is a **Deal Fairness Index (DFI)** that quantifies how good or bad a 
 
 ---
 
+## 🧭 How to read this
+
+- **EV (expected value)** is the long-run average outcome, like the “typical” prize you’d expect if you replayed the same game many times.  
+- **Utility** is how a risk-averse person *feels* about money, not just the amount—like preferring a sure $30k over a risky shot at $50k.  
+- **DFI (Deal Fairness Index)** is a simple “deal meter,” comparing the offer to what that player would consider equally satisfying.  
+
+---
+
 ## 📊 Example Results (at a glance)
 
 ### Win Distribution — EV vs Utility-aware strategy
@@ -184,7 +192,6 @@ MIT License — free to use, modify, and extend.
 Simulation & decision theory · applied modelling
 
 ````
-
 
 
 
